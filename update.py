@@ -37,18 +37,18 @@ try:
     if len(UPSTREAM_REPO) == 0:
        raise TypeError
 except TypeError:
-    UPSTREAM_REPO = "https://github.com/arshsisodiya/helios-mirror"
+    UPSTREAM_REPO = "https://github.com/arunsingh-creator/Red-Club"
 try:
     if len(UPSTREAM_BRANCH) == 0:
        raise TypeError
 except TypeError:
-    UPSTREAM_BRANCH = 'master'
+    UPSTREAM_BRANCH = 'main'
 
 if ospath.exists('.git'):
     srun(["rm", "-rf", ".git"])
 
 srun([f"git init -q \
-        && git config --global user.email heliosmirrorbot1@gmail.com \
+        && git config --global user.email kumar9555gautam@gmail.com \
         && git config --global user.name hmlb \
         && git add . \
         && git commit -sm update -q \
