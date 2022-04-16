@@ -62,18 +62,19 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Updates Channel", "https://t.me/red_drago_club")
-    buttons.buildbutton("Support Group", "https://t.me/red_dragon_club")
+    buttons.buildbutton("Updates Channel", "https://t.me/heliosmirror")
+    buttons.buildbutton("Support Group", "https://t.me/mirrorsociety")
     uname = f'<a href="tg://user?id={update.message.from_user.id}">{update.message.from_user.first_name}</a>'
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''Hey! {uname},\n
-This bot Only Works in Red Drago Club Join The @red_drago_club To Use It.
+This bot can mirror all your links to Google Drive! and also can Upload them on Telegram if you want.
+Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
     else:
         if BOT_PM:
-            message = sendMessage(f'Dear {uname},\n\nIf You Want To Use Me, You Have To Join @{CHANNEL_USERNAME}\n\n<b>NOTE:</b> All The Uploaded Links and Leeched Files By You Will Be Sent Here In Your Private Chat By The Bot.', context.bot, update)
+            message = sendMessage(f'Dear {uname},\n\nIf You Want To Use Me, You Have To Join @{CHANNEL_USERNAME}\n\n<b>NOTE:</b> All The Uploaded Links and Leeched Files By You Will Be Sent Here In Your Private Chat From Now.', context.bot, update)
             Thread(target=auto_delete_message, args=(context.bot, update.message, message)).start()
             return
         else:
@@ -209,12 +210,12 @@ leech_help_string_telegraph = f'''<br>
 '''
 if LEECH_ENABLED:
     help = telegraph.create_page(
-        title='Red-Drago Mirror & Leech Help',
+        title='Helios-Mirror & Leech Help',
         content=mirror_help_string_telegraph + leech_help_string_telegraph,
     )["path"]
 else:
     help = telegraph.create_page(
-        title='Red-Drago-Mirror Help',
+        title='Helios-Mirror Help',
         content=mirror_help_string_telegraph,
     )["path"]
 
@@ -222,7 +223,7 @@ else:
 if user_id == OWNER_ID:
     try:
         help = telegraph.create_page(
-        title='Red-Drago-Mirror Help',
+        title='Helios-Mirror Help',
         content=mirror_help_string_telegraph + leech_help_string_telegraph + sudo_help_string_telegraph,
     )["path"]
     except Exception as e:
@@ -310,7 +311,7 @@ def main():
     dispatcher.add_handler(stats_handler)
     dispatcher.add_handler(log_handler)
     updater.start_polling(drop_pending_updates=IGNORE_PENDING_REQUESTS)
-    LOGGER.info("Bot Started! Modded By Red Drago Club")
+    LOGGER.info("Bot Started!")
     signal.signal(signal.SIGINT, exit_clean_up)
     if rss_session is not None:
         rss_session.start()
@@ -318,4 +319,3 @@ def main():
 app.start()
 main()
 idle()
-
